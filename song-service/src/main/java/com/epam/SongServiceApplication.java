@@ -1,13 +1,11 @@
-package com.epam.resourceservice;
+package com.epam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ResourceServiceApplication {
-
+public class SongServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ResourceServiceApplication.class, args);
+		SpringApplication.run(SongServiceApplication.class, args);
 	}
-
 }
