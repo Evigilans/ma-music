@@ -22,3 +22,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     show-sql: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8083/eureka

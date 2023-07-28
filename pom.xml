@@ -21,8 +21,9 @@
     </parent>
 
     <modules>
-        <module>song-service</module>
+        <module>eureka-server</module>
         <module>resource-service</module>
+        <module>song-service</module>
     </modules>
     <build>
         <plugins>
