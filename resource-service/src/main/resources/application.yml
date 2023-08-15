@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: resource-service
+    name: resource-service-spr
   servlet:
     multipart:
       max-file-size: 40MB
@@ -25,5 +25,7 @@ spring:
 
 eureka:
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://eureka-server:8083/eureka
