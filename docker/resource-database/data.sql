@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS resources
 (
-    id   BIGINT NOT NULL,
-    data bytea  NOT NULL,
+    id        BIGINT       NOT NULL,
+    file_name VARCHAR(255) NULL,
+    song_url  VARCHAR(255) NULL,
     CONSTRAINT resources_pkey PRIMARY KEY (id)
 );
 

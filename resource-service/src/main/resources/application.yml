@@ -9,14 +9,14 @@ spring:
       max-file-size: 40MB
       max-request-size: 40MB
   datasource:
-    url: jdbc:postgresql://resource-database:5432/postgres
+    url: ${RESOURCE_DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     database: POSTGRESQL
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -28,4 +28,9 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://eureka-server:8083/eureka
+      defaultZone: ${EUREKA_URL}
+
+azure:
+  storage:
+    container-name: mfmusicsa-blob
+    connection-string: ${BS_CONNECTION_STRING}

@@ -5,7 +5,7 @@ spring:
   application:
     name: song-service-spr
   datasource:
-    url: jdbc:postgresql://song-database:5432/postgres
+    url: ${SONG_DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -24,4 +24,4 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://eureka-server:8083/eureka
+      defaultZone: ${EUREKA_URL}

@@ -36,11 +36,16 @@ services:
         condition: service_started
       eureka-server:
         condition: service_started
+      song-service:
+        condition: service_started
     ports:
       - "8081:8081"
     environment:
+      RESOURCE_DB_URL: ${RESOURCE_DB_URL}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      EUREKA_URL: ${EUREKA_URL}
+      BS_CONNECTION_STRING: ${BS_CONNECTION_STRING}
     networks:
       - backend
 
@@ -54,8 +59,22 @@ services:
     ports:
       - "8082:8082"
     environment:
+      SONG_DB_URL: ${SONG_DB_URL}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      EUREKA_URL: ${EUREKA_URL}
+    networks:
+      - backend
+
+  resource-processor:
+    image: evigilans/resource-processor:1.0.0
+    depends_on:
+      eureka-server:
+        condition: service_started
+    ports:
+      - "8084:8084"
+    environment:
+      EUREKA_URL: ${EUREKA_URL}
     networks:
       - backend
 

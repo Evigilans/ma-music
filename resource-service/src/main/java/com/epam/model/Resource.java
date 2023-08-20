@@ -16,6 +16,9 @@ public class Resource {
 	@Column(name = "id", nullable = false)
 	private long id;
 
-	@Column(name = "data", nullable = false, columnDefinition="bytea")
-	private byte[] data;
+	@Column(name = "file_name")
+	private String fileName;
+
+	@Column(name = "song_url")
+	private String songUrl;
 }
