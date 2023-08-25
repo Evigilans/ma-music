@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.epam</groupId>
     <artifactId>song-service</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.8</version>
     <name>song-service</name>
     <description>song-service</description>
     <properties>

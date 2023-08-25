@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: resource-processor-spr
+  kafka:
+    bootstrap-servers: ${KAFKA_URL}
+    consumer:
+      group-id: ma-music-cg
+      auto-offset-reset: earliest
 
 eureka:
   client:
@@ -11,3 +16,14 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URL}
+
+resilience4j.retry:
+  instances:
+    retryResourceProcessor:
+      maxRetryAttempts: 5
+      waitDuration: 10000
+      retry-exceptions:
+        - java.util.concurrent.TimeoutException
+        - java.lang.RuntimeException
+        - java.io.IOException
+        - java.net.ConnectException

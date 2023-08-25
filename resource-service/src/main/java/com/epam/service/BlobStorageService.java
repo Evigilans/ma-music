@@ -23,6 +23,16 @@ public class BlobStorageService {
 		this.containerName = containerName;
 	}
 
+	public byte[] loadFromBLobStorage(String fileName) {
+		BlobClient blobClient = new BlobClientBuilder()
+				.connectionString(connectionString)
+				.containerName(containerName)
+				.blobName(fileName)
+				.buildClient();
+
+		return blobClient.downloadContent().toBytes();
+	}
+
 	public String uploadToBlobStorage(MultipartFile multipartFile, String fileName) {
 		String blobUrl = null;
 

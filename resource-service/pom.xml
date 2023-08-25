@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.epam</groupId>
     <artifactId>resource-service</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.8</version>
     <name>resource-service</name>
     <description>resource-service</description>
     <properties>
@@ -30,11 +30,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
             <groupId>com.azure</groupId>

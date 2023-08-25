@@ -22,6 +22,11 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     show-sql: true
+  kafka:
+    bootstrap-servers: ${KAFKA_URL}
+    consumer:
+      group-id: ma-music-cg
+      auto-offset-reset: earliest
 
 eureka:
   client:

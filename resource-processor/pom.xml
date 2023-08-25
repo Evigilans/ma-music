@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.epam</groupId>
     <artifactId>resource-processor</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.8</version>
     <name>resource-processor</name>
     <description>resource-processor</description>
     <properties>
@@ -26,7 +26,19 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

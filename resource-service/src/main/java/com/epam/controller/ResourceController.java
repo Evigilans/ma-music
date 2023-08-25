@@ -1,6 +1,6 @@
 package com.epam.controller;
 
-import com.epam.model.Resource;
+import com.epam.model.dto.ResourceDto;
 import com.epam.service.ResourceService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class ResourceController {
 	private final ResourceService resourceService;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Resource> findResourceById(@PathVariable String id) {
-		Optional<Resource> optionalResource = resourceService.findResourceById(id);
+	public ResponseEntity<ResourceDto> findResourceById(@PathVariable String id) {
+		Optional<ResourceDto> optionalResource = resourceService.findResourceById(id);
 		return optionalResource.map(resource -> ResponseEntity.ok().body(resource)).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 

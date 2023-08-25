@@ -30,11 +30,13 @@ services:
           - "song-database"
 
   resource-service:
-    image: evigilans/resource-service:1.0.0
+    image: evigilans/resource-service:1.0.8
     depends_on:
       resource-database:
         condition: service_started
       eureka-server:
+        condition: service_started
+      kafka:
         condition: service_started
       song-service:
         condition: service_started
@@ -45,12 +47,13 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       EUREKA_URL: ${EUREKA_URL}
+      KAFKA_URL: ${KAFKA_URL}
       BS_CONNECTION_STRING: ${BS_CONNECTION_STRING}
     networks:
       - backend
 
   song-service:
-    image: evigilans/song-service:1.0.0
+    image: evigilans/song-service:1.0.8
     depends_on:
       song-database:
         condition: service_started
@@ -67,21 +70,55 @@ services:
       - backend
 
   resource-processor:
-    image: evigilans/resource-processor:1.0.0
+    image: evigilans/resource-processor:1.0.8
     depends_on:
       eureka-server:
+        condition: service_started
+      kafka:
         condition: service_started
     ports:
       - "8084:8084"
     environment:
       EUREKA_URL: ${EUREKA_URL}
+      KAFKA_URL: ${KAFKA_URL}
     networks:
       - backend
 
   eureka-server:
-    image: evigilans/eureka-server:1.0.0
+    image: evigilans/eureka-server:1.0.8
     ports:
       - "8083:8083"
+    networks:
+      - backend
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    hostname: zookeeper
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+    networks:
+      - backend
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://localhost:29092
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     networks:
       - backend
 
